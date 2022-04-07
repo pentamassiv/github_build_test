@@ -28,7 +28,7 @@ jobs:
     - name: Create ARM container
       run: docker create -i -t --name buildContainer --platform linux/arm64/v8 ubuntu:jammy
     - name: Start ARM container
-      run: start --attach -i buildContainer
+      run: docker start --attach -i buildContainer
     #- name: Attach to container
     #  run: docker attach buildContainer
     - name: Check architecture
