@@ -19,7 +19,7 @@ jobs:
     - name: Check architecture
       run: uname -m
     - name: Check release version
-      run: lsb_release -cdr
+      run: cat /etc/lsb-release
     - name: Update system
       run: apt-get update -y && apt-get upgrade -y
     - name: Install Rust, GTK4 & libadwaita
