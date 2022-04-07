@@ -18,7 +18,7 @@ jobs:
 
     steps:
     - name: Update system
-      run: apt-get update -y && apt-get upgrade -y
+      run: sudo apt-get update -y && sudo apt-get upgrade -y
     - name: Install QEMU
       run: sudo apt-get install qemu binfmt-support qemu-user-static
     - name: Check docker version
