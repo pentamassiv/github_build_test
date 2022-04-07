@@ -17,9 +17,9 @@ jobs:
 
     steps:
     - name: Update system
-      run: apt-get update && apt-get upgrade
+      run: apt-get update -y && apt-get upgrade -y
     - name: Install Rust, GTK4 & libadwaita
-      run: apt-get install rust-all libgtk-4-dev libadwaita-1-dev
+      run: apt-get install -y rust-all libgtk-4-dev libadwaita-1-dev
     - uses: actions/checkout@v2
     - name: Build
       run: cargo build --verbose
