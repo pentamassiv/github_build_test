@@ -19,11 +19,10 @@ jobs:
     steps:
     - name: Check docker version
       run: docker version
-    - name: Pull Ubuntu
-      run: docker pull ubuntu:jammy@sha256:2166a543cffd7180cb98ed58bb6a99b0e4b57ecae8859c2a8ee5aa4f5e0a4fda
-     # run: docker pull ubuntu:jammy@sha256:62b95dd050572873dbe140d8c5ced653a02f08512585489ed8d7a6ef6ef7a727
-    - name: Run container
-      run: docker run --rm --platform=linux/arm64/v8 ubuntu:jammy@sha256:2166a543cffd7180cb98ed58bb6a99b0e4b57ecae8859c2a8ee5aa4f5e0a4fda uname -m
+    - name: Run x86 container
+      run: docker run --platform linux/amd64 ubuntu:jammy uname -m
+    - name: Run ARM container
+      run: docker run --platform linux/arm64/v8 ubuntu:jammy uname -m
     - name: Check architecture
       run: uname -m
     - name: Check release version
