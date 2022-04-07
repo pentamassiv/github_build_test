@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ubuntu:jammy@sha256:2166a543cffd7180cb98ed58bb6a99b0e4b57ecae8859c2a8ee5aa4f5e0a4fda
-      # options: --platform linux/arm64/v8
+      options: --platform linux/arm64/v8
 
     steps:
     - name: Check architecture
