@@ -19,6 +19,8 @@ jobs:
     steps:
     - name: Check docker version
       run: docker version
+    - name: Run alpine aarch64
+      run: docker run --rm docker.io/library/alpine:3.12.1@sha256:fbb820c07896f5c2516167e7146d9938fc82d4b6b1db167defa5b0a7162e4480 uname -m
     - name: Run ARM container
       run: docker run --platform linux/arm64/v8 ubuntu:latest uname -m
     - name: Run x86 container
