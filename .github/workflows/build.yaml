@@ -20,7 +20,7 @@ jobs:
     - name: Check docker version
       run: docker version
     - name: Run alpine aarch64
-      run: docker run --platform linux/amd64 alpine:3.12.1 uname -m
+      run: docker run --platform linux/arm64/v8 alpine:3.12.1 uname -m
     - name: Run ARM container
       run: docker run --platform linux/arm64/v8 ubuntu:latest uname -m
     - name: Run x86 container
