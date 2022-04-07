@@ -13,7 +13,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: ubuntu:devel@sha256:a51c8bb81605567ea27d627425adf94a613d675a664bf473d43a55a8a26416b8
+      image: ubuntu:jammy@sha256:a51c8bb81605567ea27d627425adf94a613d675a664bf473d43a55a8a26416b8
       options: --platform linux/arm64/v8
 
     steps:
