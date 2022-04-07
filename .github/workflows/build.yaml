@@ -20,7 +20,7 @@ jobs:
     - name: Check docker version
       run: docker version
     - name: Pull Ubuntu
-      run: docker pull ubuntu:jammy
+      run: docker pull ubuntu:jammy@sha256:62b95dd050572873dbe140d8c5ced653a02f08512585489ed8d7a6ef6ef7a727
     - name: Run container
       run: docker run -i -t ubuntu /bin/bash
     - name: Check architecture
