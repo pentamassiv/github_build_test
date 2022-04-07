@@ -17,8 +17,14 @@ jobs:
     #  options: --platform linux/arm64/v8
 
     steps:
+    - name: Update system
+      run: apt-get update -y && apt-get upgrade -y
+    - name: Install QEMU
+      run: sudo apt-get install qemu binfmt-support qemu-user-static
     - name: Check docker version
       run: docker version
+    - name: Enable multiarch support for docker
+      run: docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
     - name: Run alpine aarch64
       run: docker run --platform linux/arm64/v8 alpine:3.12.1 uname -m
     - name: Run ARM container
