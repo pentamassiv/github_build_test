@@ -20,9 +20,9 @@ jobs:
     - name: Check docker version
       run: docker version
     - name: Run x86 container
-      run: docker run --platform linux/amd64 ubuntu:jammy uname -m
+      run: docker run --platform linux/amd64 ubuntu:latest uname -m
     - name: Run ARM container
-      run: docker run --platform linux/arm64/v8 ubuntu:jammy uname -m
+      run: docker run --platform linux/arm64/v8 ubuntu:latest uname -m
     - name: Check architecture
       run: uname -m
     - name: Check release version
