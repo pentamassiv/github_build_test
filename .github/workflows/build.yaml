@@ -16,6 +16,10 @@ jobs:
       image: ubuntu:devel
 
     steps:
+    - name: Update system
+      run: sudo apt-get update && sudo apt-get upgrade
+    - name: Install Rust, GTK4 & libadwaita
+      run: sudo apt-get install rust-all libgtk-4-dev libadwaita-1-dev
     - uses: actions/checkout@v2
     - name: Build
       run: cargo build --verbose
