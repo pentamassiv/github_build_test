@@ -25,12 +25,9 @@ jobs:
       run: docker version
     - name: Enable multiarch support for docker
       run: docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
-    - name: Run alpine aarch64
-      run: docker run --platform linux/arm64/v8 alpine:3.12.1 uname -m
     - name: Run ARM container
-      run: docker run --platform linux/arm64/v8 ubuntu:latest uname -m
-    - name: Run x86 container
-      run: docker run --platform linux/amd64 ubuntu:latest uname -m
+      run: sudo docker run −it --platform linux/arm64/v8 ubuntu:jammy bash
+      #run: docker run --platform linux/arm64/v8 ubuntu:jammy uname -m
     - name: Check architecture
       run: uname -m
     - name: Check release version
