@@ -33,5 +33,5 @@ jobs:
               uname -m
               cat /etc/lsb-release
           #   .. run build steps on the container
-          #   cargo build --verbose
-          #   cargo test --verbose
+             cargo build --verbose
+             cargo test --verbose
