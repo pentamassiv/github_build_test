@@ -13,6 +13,8 @@ jobs:
   release-for-x86:
     runs-on: ubuntu-latest
     name: ci (amd64)
+    container:
+      image: ubuntu:jammy
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -26,9 +28,9 @@ jobs:
 
       - name: Install dependencies
         run:  |
-            sudo apt-get update -q -y
-            sudo apt-get upgrade -y
-            sudo apt-get install -q -y rust-all libgtk-4-dev libadwaita-1-dev
+            apt-get update -q -y
+            apt-get upgrade -y
+            apt-get install -q -y rust-all libgtk-4-dev libadwaita-1-dev
       - name: Build
         run: cargo build --release --verbose
       - name: Run tests
