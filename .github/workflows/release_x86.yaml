@@ -26,9 +26,9 @@ jobs:
 
       - name: Install dependencies
         run:  |
-            apt-get update -q -y
-            apt-get upgrade -y
-            apt-get install -q -y rust-all libgtk-4-dev libadwaita-1-dev
+            sudo apt-get update -q -y
+            sudo apt-get upgrade -y
+            sudo apt-get install -q -y rust-all libgtk-4-dev libadwaita-1-dev
       - name: Build
         run: cargo build --release --verbose
       - name: Run tests
