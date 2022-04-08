@@ -17,20 +17,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Build in arm64 container
-        uses: pentamassiv/run-on-arch-action
+        uses: pentamassiv/run-on-arch-action@d7221eba38842f988199732187fc0af9e258f2b2
         with:
           arch: aarch64
           distro: ubuntu_devel
           # Install deps into the container. With the token, the container will be cached
           # The image is cached publically like a package
           githubToken: ${{ github.token }}
-          #install: |
-          #   rust-all libgtk-4-dev libadwaita-1-dev
           #   .. install packages for the arm container (e.g. Dockerfile steps)
+          #install: |
+          #   apt-get update -q -y
+          #   apt-get upgrade -y
+          #   apt-get install -q -y rust-all libgtk-4-dev libadwaita-1-dev
           run: |
               uname -m
               cat /etc/lsb-release
           #   .. run build steps on the container
           #   cargo build --verbose
           #   cargo test --verbose
-          
