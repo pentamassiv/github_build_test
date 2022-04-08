@@ -16,6 +16,21 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Check architecture
+        run: uname -m
+      - name: Check what files are there
+        run: ls
+      - name: Cache for the built files
+        uses: actions/cache@v3
+          with:
+            path: |
+              ~/.cargo/bin/
+              ~/.cargo/registry/index/
+              ~/.cargo/registry/cache/
+              ~/.cargo/git/db/
+              target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+
       - name: Build in arm64 container
         uses: pentamassiv/run-on-arch-action@d7221eba38842f988199732187fc0af9e258f2b2
         with:
@@ -24,15 +39,15 @@ jobs:
           # Install deps into the container. With the token, the container will be cached
           # The image is cached publically like a package
           githubToken: ${{ github.token }}
-          #  Install packages for the arm container (e.g. Dockerfile steps) and compile the application so it can be cached
-          install: |
-            apt-get update -q -y
-            apt-get upgrade -y
-            apt-get install -q -y rust-all libgtk-4-dev libadwaita-1-dev
+          #  Install packages for the arm container (e.g. Dockerfile steps)
+          #install: |
+          #  apt-get update -q -y
+          #  apt-get upgrade -y
+          #  apt-get install -q -y rust-all libgtk-4-dev libadwaita-1-dev
+          #   .. run build steps on the container
+          run: |
             uname -m
             cat /etc/lsb-release
             cargo build --verbose
             cargo test --verbose
-          #   .. run build steps on the container
-          run: |
-            uname -m
+            ls
