@@ -1,3 +1,17 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 name: Build
 
 on:
@@ -10,35 +24,26 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  build:
+  build-on-aarch64:
     runs-on: ubuntu-latest
-    #container:
-    #  image: ubuntu:jammy@sha256:2166a543cffd7180cb98ed58bb6a99b0e4b57ecae8859c2a8ee5aa4f5e0a4fda
-    #  options: --platform linux/arm64/v8
-
+    name: ci (arm64)
     steps:
-    - name: Update system
-      run: sudo apt-get update -y && sudo apt-get upgrade -y
-    - name: Install QEMU
-      run: sudo apt-get install qemu binfmt-support qemu-user-static
-    - name: Check docker version
-      run: docker version
-    - name: Enable multiarch support for docker
-      run: docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
-    - name: Run ARM container
-      run: docker run --name buildContainer --platform linux/arm64/v8 ubuntu:jammy uname -m
-    - name: Check status of container
-      run: docker ps
-    - name: Check architecture
-      run: docker exec buildContainer uname -m
-    - name: Check release version
-      run: cat /etc/lsb-release
-    - name: Update system
-      run: apt-get update -y && apt-get upgrade -y
-    - name: Install Rust, GTK4 & libadwaita
-      run: apt-get install -y rust-all libgtk-4-dev libadwaita-1-dev
-    - uses: actions/checkout@v2
-    - name: Build
-      run: cargo build --verbose
-    - name: Run tests
-      run: cargo test --verbose
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build in arm64 container
+        uses: pentamassiv/run-on-arch-action
+        with:
+          arch: aarch64
+          distro: ubuntu_devel
+          # Install deps into the container. With the token, the container will be cached
+          # The image is cached publically like a package
+          githubToken: ${{ github.token }}
+          #install: |
+          #   rust-all libgtk-4-dev libadwaita-1-dev
+          #   .. install packages for the arm container (e.g. Dockerfile steps)
+          run: |
+              uname -m
+              cat /etc/lsb-release
+          #   .. run build steps on the container
+          #   cargo build --verbose
+          #   cargo test --verbose
