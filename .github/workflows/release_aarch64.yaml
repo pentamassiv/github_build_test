@@ -1,4 +1,4 @@
-name: Release
+name: Release_aarch64
 
 on:
   push:
