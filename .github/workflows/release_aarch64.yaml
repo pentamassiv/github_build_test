@@ -1,0 +1,37 @@
+name: Release
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  release-for-aarch64:
+    runs-on: ubuntu-latest
+    name: ci (arm64)
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build in arm64 container
+        uses: pentamassiv/run-on-arch-action@d7221eba38842f988199732187fc0af9e258f2b2
+        with:
+          arch: aarch64
+          distro: ubuntu_devel
+          # Install deps into the container. With the token, the container will be cached
+          # The image is cached publically like a package
+          githubToken: ${{ github.token }}
+          #  Install packages for the arm container (e.g. Dockerfile steps)
+          install: |
+            apt-get update -q -y
+            apt-get upgrade -y
+            apt-get install -q -y rust-all libgtk-4-dev libadwaita-1-dev
+          #   .. run build steps on the container
+          run: |
+            uname -m
+            cat /etc/lsb-release
+            cargo build --release --verbose
+            cargo test --release --verbose
