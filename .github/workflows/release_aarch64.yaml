@@ -35,3 +35,9 @@ jobs:
             cat /etc/lsb-release
             cargo build --release --verbose
             cargo test --release --verbose
+                  - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            target/release/github_build_test
