@@ -24,11 +24,11 @@ jobs:
           # Install deps into the container. With the token, the container will be cached
           # The image is cached publically like a package
           githubToken: ${{ github.token }}
-          #   .. install packages for the arm container (e.g. Dockerfile steps)
-          #install: |
-          #   apt-get update -q -y
-          #   apt-get upgrade -y
-          #   apt-get install -q -y rust-all libgtk-4-dev libadwaita-1-dev
+          #  Install packages for the arm container (e.g. Dockerfile steps)
+          install: |
+             apt-get update -q -y
+             apt-get upgrade -y
+             apt-get install -q -y rust-all libgtk-4-dev libadwaita-1-dev
           run: |
               uname -m
               cat /etc/lsb-release
