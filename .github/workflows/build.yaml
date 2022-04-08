@@ -54,3 +54,11 @@ jobs:
             ls
       - name: Check what files are there
         run: ls
+      - name: Check what files are there
+        run: ~/.cargo/bin/
+      - name: Check what files are there
+        run: ~/.cargo/registry/index/
+      - name: Check what files are there
+        run: ~/.cargo/registry/cache/
+      - name: Check what files are there
+        run: ~/.cargo/git/db/
