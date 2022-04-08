@@ -26,12 +26,12 @@ jobs:
           githubToken: ${{ github.token }}
           #  Install packages for the arm container (e.g. Dockerfile steps)
           install: |
-             apt-get update -q -y
-             apt-get upgrade -y
-             apt-get install -q -y rust-all libgtk-4-dev libadwaita-1-dev
-          run: |
-              uname -m
-              cat /etc/lsb-release
+            apt-get update -q -y
+            apt-get upgrade -y
+            apt-get install -q -y rust-all libgtk-4-dev libadwaita-1-dev
           #   .. run build steps on the container
-             cargo build --verbose
-             cargo test --verbose
+          run: |
+            uname -m
+            cat /etc/lsb-release
+            cargo build --verbose
+            cargo test --verbose
