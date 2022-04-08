@@ -52,3 +52,5 @@ jobs:
             cargo build --verbose
             cargo test --verbose
             ls
+      - name: Check what files are there
+        run: ls
