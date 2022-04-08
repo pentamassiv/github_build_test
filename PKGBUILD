@@ -2,7 +2,7 @@
 
 pkgname=github_build_test-bin
 _pkgname=github_build_test
-pkgver=0.0.6
+pkgver=0.0.7
 pkgrel=1
 pkgdesc="Test automating building and publishing with Github Actions"
 url="https://github.com/pentamassiv/${_pkgname}"
