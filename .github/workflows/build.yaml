@@ -38,10 +38,11 @@ jobs:
           # The image is cached publically like a package
           githubToken: ${{ github.token }}
           #  Install packages for the arm container (e.g. Dockerfile steps)
-          #install: |
+          install: |
+            apt-get install -q -y rust-all
           #  apt-get update -q -y
           #  apt-get upgrade -y
-          #  apt-get install -q -y rust-all libgtk-4-dev libadwaita-1-dev
+          #  apt-get install -q -y libgtk-4-dev libadwaita-1-dev
           #   .. run build steps on the container
           run: |
             uname -m
