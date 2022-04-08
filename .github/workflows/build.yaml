@@ -25,12 +25,8 @@ jobs:
       run: docker version
     - name: Enable multiarch support for docker
       run: docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
-    - name: Create ARM container
-      run: docker create -i -t --name buildContainer --platform linux/arm64/v8 ubuntu:jammy
-    - name: Start ARM container
-      run: docker start --attach -i buildContainer
-    #- name: Attach to container
-    #  run: docker attach buildContainer
+    - name: Run ARM container
+      run: docker run --platform linux/arm64/v8 ubuntu:jammy uname -m
     - name: Check architecture
       run: uname -m
     - name: Check release version
