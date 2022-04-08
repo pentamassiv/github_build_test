@@ -39,6 +39,8 @@ jobs:
           githubToken: ${{ github.token }}
           #  Install packages for the arm container (e.g. Dockerfile steps)
           install: |
+            apt-get update -q -y
+            apt-get upgrade -y
             apt-get install -q -y rust-all
           #  apt-get update -q -y
           #  apt-get upgrade -y
