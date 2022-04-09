@@ -37,14 +37,14 @@ jobs:
         run: |
             cargo build --verbose
             cargo test --verbose
-            mv debug/github_build_test debug/github_build_test_debug_x86_64
+            mv target/debug/github_build_test target/debug/github_build_test_debug_x86_64
       - name: Build, test and strip the release binary
         if: startsWith(github.ref, 'refs/tags/')
         run: |
             cargo build --release --verbose
             cargo test --release --verbose
-            strip --strip-all release/github_build_test
-            mv release/github_build_test release/github_build_test_x86_64
+            strip --strip-all target/release/github_build_test
+            mv target/release/github_build_test target/release/github_build_test_x86_64
       - name: Add debug binary to release
         uses: svenstaro/upload-release-action@v2
         if: startsWith(github.ref, 'refs/tags/')
