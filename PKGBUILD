@@ -21,6 +21,5 @@ source_x86_64=("https://github.com/pentamassiv/${_pkgname}/releases/download/v${
 source_aarch64=("https://github.com/pentamassiv/${_pkgname}/releases/download/v${pkgver}/${_pkgname}_aarch64")
 
 package() {
-  cd keyboard
   install -Dm 755 ${_pkgname}_${CARCH} -t "${pkgdir}/usr/bin"
 }
