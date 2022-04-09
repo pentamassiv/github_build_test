@@ -1,4 +1,4 @@
-name: Release_aarch64
+name: release_pkgbuild
 
 on:
   push:
