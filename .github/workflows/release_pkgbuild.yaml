@@ -11,18 +11,27 @@ jobs:
     steps:
       - name: Get the version
         id: get_version
-        run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/v}
+        run: |
+            echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/v}
+            echo "::set-output name=SHA::$(git rev-parse HEAD)"
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Replace the version number
         run: |
-            sed -i 's/PACKAGEVERSION/${{ steps.get_version.outputs.VERSION }}/g' PKGBUILD
-
-
-      - name: Upload PKGBUILD to release
+            sed -i 's/PACKAGEVERSION/${{ steps.get_version.outputs.VERSION }}/g' packaging/PKGBUILD_bin
+            sed -i 's/PACKAGEVERSION/${{ steps.get_version.outputs.VERSION }}/g' packaging/PKGBUILD_src
+            sed -i 's/COMMITPLACEHOLDER/${{ steps.get_version.outputs.SHA }}/g' packaging/PKGBUILD_src
+      - name: Upload PKGBUILD using precompiled bin to release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: PKGBUILD
+          file: packaging/bin/PKGBUILD_bin
+          tag: ${{ github.ref }}
+          overwrite: true
+      - name: Upload PKGBUILD using src to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: packaging/bin/PKGBUILD_src
           tag: ${{ github.ref }}
           overwrite: true
