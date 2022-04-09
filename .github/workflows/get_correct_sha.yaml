@@ -1,0 +1,15 @@
+name: SHA
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  release-pkgbuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the SHA
+        run: |
+            echo "SHA of tag is:"
+            echo ${GITHUB_SHA}
