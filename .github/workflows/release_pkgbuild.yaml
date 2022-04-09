@@ -19,7 +19,7 @@ jobs:
         run: |
             sed -i 's/PACKAGEVERSION/${{ steps.get_version.outputs.VERSION }}/g' packaging/PKGBUILD_bin
             sed -i 's/PACKAGEVERSION/${{ steps.get_version.outputs.VERSION }}/g' packaging/PKGBUILD_src
-            sed -i 's/COMMITPLACEHOLDER/${GITHUB_SHA}/g' packaging/PKGBUILD_src
+            sed -i 's/COMMITPLACEHOLDER/${{ GITHUB_SHA }}/g' packaging/PKGBUILD_src
       - name: Upload PKGBUILD using precompiled bin to release
         uses: svenstaro/upload-release-action@v2
         with:
