@@ -25,13 +25,13 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: packaging/bin/PKGBUILD_bin
+          file: packaging/PKGBUILD_bin
           tag: ${{ github.ref }}
           overwrite: true
       - name: Upload PKGBUILD using src to release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: packaging/bin/PKGBUILD_src
+          file: packaging/PKGBUILD_src
           tag: ${{ github.ref }}
           overwrite: true
