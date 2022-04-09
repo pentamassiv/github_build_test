@@ -13,14 +13,13 @@ jobs:
         id: get_version
         run: |
             echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/v}
-            echo "::set-output name=SHA::$(git rev-parse HEAD)"
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Replace the version number
         run: |
             sed -i 's/PACKAGEVERSION/${{ steps.get_version.outputs.VERSION }}/g' packaging/PKGBUILD_bin
             sed -i 's/PACKAGEVERSION/${{ steps.get_version.outputs.VERSION }}/g' packaging/PKGBUILD_src
-            sed -i 's/COMMITPLACEHOLDER/${{ steps.get_version.outputs.SHA }}/g' packaging/PKGBUILD_src
+            sed -i 's/COMMITPLACEHOLDER/${GITHUB_SHA}/g' packaging/PKGBUILD_src
       - name: Upload PKGBUILD using precompiled bin to release
         uses: svenstaro/upload-release-action@v2
         with:
