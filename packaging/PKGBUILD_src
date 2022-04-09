@@ -11,7 +11,7 @@ depends=(gtk4 libadwaita)
 optdepends=()
 makedepends=(git gcc pkgconf fakeroot) # It also requires cargo but that often is installed through rustup and does not show up as being installed
 provides=()
-conflicts=()
+conflicts=(${pkgname}-bin)
 replaces=()
 _commit=COMMITPLACEHOLDER
 source=("git+https://github.com/pentamassiv/${pkgname}#commit=${_commit}")
