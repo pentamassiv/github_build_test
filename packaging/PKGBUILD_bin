@@ -22,5 +22,5 @@ source_aarch64=("https://github.com/pentamassiv/${_pkgname}/releases/download/v$
 
 package() {
   mv ${_pkgname}_${CARCH} ${_pkgname}
-  install -Dm 755 ${_pkgname}_${CARCH} -t "${pkgdir}/usr/bin"
+  install -Dm 755 ${_pkgname} -t "${pkgdir}/usr/bin"
 }
