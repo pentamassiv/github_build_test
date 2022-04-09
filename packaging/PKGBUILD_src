@@ -14,7 +14,7 @@ provides=()
 conflicts=()
 replaces=()
 _commit=COMMITPLACEHOLDER
-source=("git+https://github.com/pentamassiv/${pkgname}#commit=$_commit")
+source=("git+https://github.com/pentamassiv/${pkgname}#commit=${_commit}")
 sha256sums=("SKIP")
 
 pkgver() {
