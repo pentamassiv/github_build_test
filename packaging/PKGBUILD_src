@@ -40,4 +40,6 @@ check() {
 package() {
   cd ${pkgname}
   install -Dm 755 target/release/${pkgname} -t "${pkgdir}/usr/bin"
+  install -Dm 755 packaging/assets/${_pkgname}.desktop -t "${pkgdir}/usr/share/applications"
+  # Also the icon needs to be copied to /usr/share/icons/hicolor/
 }

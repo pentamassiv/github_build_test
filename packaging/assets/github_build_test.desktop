@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=github_build_test
+GenericName=("Web Browser"; "Media Player")
+Exec=github_build_test
+Icon=signal-desktop

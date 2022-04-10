@@ -23,4 +23,6 @@ source_aarch64=("https://github.com/pentamassiv/${_pkgname}/releases/download/v$
 package() {
   mv ${_pkgname}_${CARCH} ${_pkgname}
   install -Dm 755 ${_pkgname} -t "${pkgdir}/usr/bin"
+  install -Dm 755 packaging/assets/${_pkgname}.desktop -t "${pkgdir}/usr/share/applications"
+  # Also the icon needs to be copied to /usr/share/icons/hicolor/
 }
