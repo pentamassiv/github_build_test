@@ -17,7 +17,7 @@ jobs:
     name: ci (arm64)
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Build in arm64 container
         uses: pentamassiv/run-on-arch-action@d7221eba38842f988199732187fc0af9e258f2b2
         with:
