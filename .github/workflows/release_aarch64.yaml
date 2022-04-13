@@ -19,7 +19,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Build in arm64 container
-        uses: pentamassiv/run-on-arch-action@d7221eba38842f988199732187fc0af9e258f2b2
+        uses: uraimo/run-on-arch-action@v2.2.0
         with:
           arch: aarch64
           distro: ubuntu_devel
